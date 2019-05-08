@@ -10,7 +10,7 @@ export default class ContentCard extends Component {
                 <div className='card box-shadow text-center'>
                     <div style={{ marginTop: 15 }} className='text-center card-title'><h3>{this.props.title}</h3></div>
                     <h5>{this.props.subtitle}</h5>
-                    <a href={this.props.projectURL} rel="noopener noreferrer" target='_blank'>Link to Project</a>
+                    <a href={this.props.projectURL} rel="noopener noreferrer" target='_blank'>{this.props.projectURL}</a>
                     <div className="card-body d-flex align-items-center flex-column justify-content-md-center">
                         {this.props.children}
                     </div>

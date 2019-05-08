@@ -31,7 +31,7 @@ class App extends Component {
               I believe I am ready to put my skills to use in real world applications!
             </ContentCard>
 
-            <ContentCard title='Experiences'>
+            <ContentCard title='Experience'>
 
               <h6>I have experience with the following development languages and packages:</h6>
 
@@ -78,7 +78,7 @@ class App extends Component {
         return (
           <div className='w3-animate-opacity'>
             <ContentCard title='Contact Info'>
-
+              Available
             </ContentCard>
           </div>
 

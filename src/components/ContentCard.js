@@ -1,22 +1,50 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { Spring } from 'react-spring/renderprops';
 
-import Col from 'react-bootstrap/Col';
+class ContentCard extends React.Component {
 
-export default class ContentCard extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            clicked: false,
+        }
+    }
+
+    click = () => {
+        this.setState({ clicked: !this.state.clicked });
+    }
+
+    handleClick = () => {
+        if (!this.state.clicked) {
+            return (
+                <Spring
+                    from={{ opacity: 1, height: this.props.height }}
+                    to={{ opacity: 0, height: 0 }}>
+                    {props => <div className='extended-div site-font' style={props}>{this.props.children}</div>}
+                </Spring>
+            );
+        } else {
+            return (
+                <Spring
+                    from={{ opacity: 0, height: 0 }}
+                    to={{ opacity: 1, height: this.props.height }}>
+                    {props => <div className='extended-div site-font' style={props}>{this.props.children}</div>}
+                </Spring>
+            );
+        }
+    }
 
     render() {
         return (
-            <Col style={{ minHeight: 200, maxWidth: 800, minWidth: 400, overflow: 'auto', marginTop: 50 }}>
-                <div className='card box-shadow text-center'>
-                    <div style={{ marginTop: 15 }} className='text-center card-title'><h3>{this.props.title}</h3></div>
-                    <h5>{this.props.subtitle}</h5>
-                    <a href={this.props.projectURL} rel="noopener noreferrer" target='_blank'>{this.props.projectURL}</a>
-                    <div className="card-body d-flex align-items-center flex-column justify-content-md-center">
-                        {this.props.children}
-                    </div>
-                </div>
-            </Col>
+            <div onClick={() => this.click()} className='content-card box-shadow'>
+                <div><h2 className='site-font'>{this.props.title}</h2></div>
+                <div><h4 className='site-font'>{this.props.subtitle}</h4></div>
+                {this.handleClick()}
+            </div>
         );
     }
 }
+
+export default ContentCard;
 

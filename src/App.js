@@ -1,9 +1,23 @@
 import React, { Component } from 'react';
+import { Spring, Transition, animated } from 'react-spring/renderprops';
+
 import './App.css';
 
 import Header from './components/Header';
 import ContentCard from './components/ContentCard';
 import Footer from './components/Footer';
+
+const pages = [
+  style => (
+    <animated.div style={{ ...style, height: '80%', width: '100%', position: 'absolute', background: '#1a2f58' }}></animated.div>
+  ),
+  style => (
+    <animated.div style={{ ...style, height: '80%', width: '100%', position: 'absolute', background: '#12DBBF' }}></animated.div>
+  ),
+  style => (
+    <animated.div style={{ ...style, height: '80%', width: '100%', position: 'absolute', background: '#322a44' }}></animated.div>
+  ),
+]
 
 class App extends Component {
 
@@ -12,7 +26,12 @@ class App extends Component {
 
     this.state = {
       currentCard: 0,
+
+      directionFrom: 'translate3d(100%,0,0)',
+      directionTo: 'translate3d(-50%,0,0)',
     }
+
+    this.opac = 0;
   }
 
   changeCard = () => {
@@ -20,69 +39,31 @@ class App extends Component {
     switch (this.state.currentCard) {
       case 0:
         return (
-          <div className='w3-animate-opacity'>
-            <ContentCard title='Hi'>
-              <img alt='me' className='profile-img' src={require('./assets/IMG_3416.png')}></img>
-              <h5>Welcome to my portfolio!</h5> My name is Christian Cotham and I am an aspiring ReactJS and React-Native developer. Starting with Adobe
-              Flash Builder 4.7 (R.I.P) in my freshman year of highschool, I have been learning front-end programming as a hobby and a passion.
-              Soon after I was introduced to React-Native, eventually overcoming the learning challenges that came along with learning the framework,
-              and I can proudly say I can build proficient React-Native applications, Redux and all! At this point I got into ReactJS, surprisingly
-              easy to learn since React-Native is exactly like it. Now with some full-stack React websites and mobile applications under my belt,
-              I believe I am ready to put my skills to use in real world applications!
-            </ContentCard>
+          <ContentCard height={450} title="I'm Christian." subtitle='No, nothing to do with religion. Click this to learn more.'>
+            <hr></hr><h4>My name?</h4> <h2>Christian Cotham.</h2> <h4>My game?</h4> <h2>I love playing games.</h2>
+            <h5><a rel="noopener noreferrer" target='_blank' href='https://steamcommunity.com/id/Cassio853'>Add me on Steam</a></h5>
+            <h5>Or Battle.net | Cassio#11467</h5>
+            <h5>Or Origin | CassioLT</h5>
+            <h5>Or Discord | Cassio#8334</h5>
+            <h4>My passion?</h4>
+            <h2>Programming.</h2>
+            <h4 >Click the right arrow to see what I've made --></h4>
+          </ContentCard>
 
-            <ContentCard title='Experience'>
-
-              <h6>I have experience with the following development languages and packages:</h6>
-
-              <ul>
-                <li>HTML, CSS, Bootstrap, and Handlebars</li>
-                <li>AWS Lambda, Cloudfront, API Gateway, S3 Bucket</li>
-                <li>SQL, MongoDB, Mongoose Framework</li>
-                <li>Node.js, Express Framework</li>
-                <li>Serverless Framework</li>
-                <li>ReactJS, React-Native</li>
-                <li>Firebase (Authentication, storage)</li>
-              </ul>
-
-            </ContentCard>
-          </div>
         )
 
       case 1:
         return (
-          <div className='w3-animate-opacity project-container'>
-            <ContentCard title='Bee-Alive' subtitle='Bee-Quote Generator' projectURL='http://bee-alive.s3-website-us-east-1.amazonaws.com/'>
-              Bee-Alive is a quote generator for the Bee-Movie, made with ReactJS and deployed with AWS S3.
-            </ContentCard>
+          <ContentCard height={0}>
 
-            <ContentCard title='Twitch-Vod-Stats' subtitle='A website that generates statistics for VODs on Twitch.tv' projectURL='https://www.twitch-vod-stats.com'>
-            Twitch-Vod-Stats is a full-stack application, made with ReactJS and deployed with AWS S3. The backend of the site uses Serverless and Lambda functions to provide information for the front-end, where it writes information to a MongoDB database for quick results once a VOD is loaded. 
-            </ContentCard>
-
-            <ContentCard title='Twitch-Vod-Stats-API' subtitle='The Serverless endpoint that connects with the frontend of twitch-vod-stats' projectURL='https://github.com/DrySoldier/twitch-vod-stats-api'>
-              The backend for Twitch-Vod-Stats, anybody is able to use this API endpoint to create and get the chatlog of any twitch video, for whatever they want it for. Built with Express and Serverless, check the link above for full instructions of use.
-            </ContentCard>
-
-            <ContentCard title='Trivia Game' subtitle='A web-application testing the Trivia API' projectURL='https://drysoldier.github.io/TriviaGame/'>
-              Built in JQuery and vanilla Javascript, this web-application grabs for a Trivia API to give random questions.
-            </ContentCard>
-
-            <ContentCard title='BPMixer' subtitle='A mobile application to get recipes based on things in your pantry' projectURL='https://github.com/DrySoldier/bpmixer'>
-              A mobile application built with React-Native and a back-end of Firebase, this app takes an input of ingredients that you have in your pantry and returns a list of recipes that can be made with those ingredients. The app also gives the ability to log-in and save all recipes.
-            </ContentCard>
-          </div>
+          </ContentCard>
         )
 
       case 2:
         return (
-          <div className='w3-animate-opacity'>
-            <ContentCard title='Contact Info'>
-              Available
-            </ContentCard>
-          </div>
+          <ContentCard height={0}>
 
-
+          </ContentCard>
         )
 
       default:
@@ -99,7 +80,7 @@ class App extends Component {
       currentCard--;
     }
 
-    this.setState({ currentCard });
+    this.setState({ currentCard, directionFrom: 'translate3d(100%,0,0)', directionTo: 'translate3d(-50%,0,0)' });
   }
 
   rightClick = () => {
@@ -111,11 +92,17 @@ class App extends Component {
       currentCard++;
     }
 
-    this.setState({ currentCard });
+    this.setState({ currentCard, directionFrom: 'translate3d(-50%,0,0)', directionTo: 'translate3d(100%,0,0)' });
   }
 
   headerClicked = pressed => {
-    this.setState({ currentCard: pressed });
+    if (this.state.currentCard > pressed) {
+      this.setState({ currentCard: pressed, directionFrom: 'translate3d(100%,0,0)', directionTo: 'translate3d(-50%,0,0)' });
+    } else if (this.state.currentCard < pressed) {
+      this.setState({ currentCard: pressed, directionFrom: 'translate3d(-50%,0,0)', directionTo: 'translate3d(100%,0,0)' });
+    } else {
+      this.setState({ currentCard: pressed });
+    }
   }
 
   render() {
@@ -124,15 +111,37 @@ class App extends Component {
       <div className='app-container'>
         <Header _handleParentClick={(pressed) => this.headerClicked(pressed)} currentCard={this.state.currentCard} />
 
+        <div className="main">
+          <Transition
+            native
+            reset
+            unique
+            items={this.state.currentCard}
+            from={{ opacity: 0, transform: this.state.directionFrom }}
+            enter={{ opacity: 1, transform: 'translate3d(0%,0,0)' }}
+            leave={{ opacity: 0, transform: this.state.directionTo }}>
+            {currentCard => pages[currentCard]}
+          </Transition>
+        </div>
+
         <div className='content-container'>
 
-          {this.changeCard()}
+          <Spring
+            from={{ opacity: 0 }}
+            to={{ opacity: 1 }}
+            reset={true}>
+            {opac =>
+              <div style={opac}>
+                {this.changeCard()}
+              </div>
+            }
+          </Spring>
 
           <div className='arrow-container'>
-            <button style={{ marginLeft: 50, opacity: 0.2 }}><img src={require('./assets/chevron-left.png')} alt='arrow left'
+            <button className='left-chevron'><img src={require('./assets/chevron-left.png')} alt='arrow left'
               onClick={this.leftClick} />
             </button>
-            <button style={{ marginRight: 50, opacity: 0.2 }}><img src={require('./assets/chevron-right.png')} alt='arrow right'
+            <button className='right-chevron'><img src={require('./assets/chevron-right.png')} alt='arrow right'
               onClick={this.rightClick} /></button>
           </div>
 
@@ -140,8 +149,8 @@ class App extends Component {
 
         <Footer>
 
-          <a href='https://github.com/DrySoldier'>Github Repo</a>
-          <a href='https://github.com/DrySoldier'>Repo for site</a>
+          <a href='https://github.com/DrySoldier' className='site-font'>- Github Repo -</a>
+          <a href='https://github.com/DrySoldier' className='site-font'>- Repo for site -</a>
 
         </Footer>
 

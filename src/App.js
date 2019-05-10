@@ -143,6 +143,14 @@ class App extends Component {
 
         <div className='content-container'>
 
+          <div className='arrow-container'>
+            <button className='left-chevron'><img src={require('./assets/chevron-left.png')} alt='arrow left'
+              onClick={this.leftClick} />
+            </button>
+            <button className='right-chevron'><img src={require('./assets/chevron-right.png')} alt='arrow right'
+              onClick={this.rightClick} /></button>
+          </div>
+
           <Spring
             from={{ opacity: 0 }}
             to={{ opacity: 1 }}
@@ -153,14 +161,6 @@ class App extends Component {
               </div>
             }
           </Spring>
-
-          <div className='arrow-container'>
-            <button className='left-chevron'><img src={require('./assets/chevron-left.png')} alt='arrow left'
-              onClick={this.leftClick} />
-            </button>
-            <button className='right-chevron'><img src={require('./assets/chevron-right.png')} alt='arrow right'
-              onClick={this.rightClick} /></button>
-          </div>
 
         </div>
 

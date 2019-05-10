@@ -38,7 +38,7 @@ class ContentCard extends React.Component {
     render() {
         return (
             <div onClick={() => this.click()} className='content-card box-shadow'>
-                <div><h2 className='site-font'>{this.props.title}</h2></div>
+                <div><h2 className='title-font'><b>{this.props.title}</b></h2></div>
                 <div><h4 className='site-font'>{this.props.subtitle}</h4></div>
                 {this.handleClick()}
             </div>

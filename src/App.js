@@ -41,7 +41,7 @@ class App extends Component {
     switch (this.state.currentCard) {
       case 0:
         return (
-          <ContentCard height={450} title="I'm Christian." subtitle='No, nothing to do with religion. Click this to learn more.'>
+          <ContentCard height={505} title="I'm Christian." subtitle='No, nothing to do with religion. Click this to learn more.'>
             <hr></hr><h4>My name?</h4> <h2>Christian Cotham.</h2> <h4>My game?</h4> <h2>I <u>love</u> playing games.</h2>
             <h5><a rel="noopener noreferrer" target='_blank' href='https://steamcommunity.com/id/Cassio853'>Add me on Steam</a></h5>
             <h5>Or Battle.net | Cassio#11467</h5>
@@ -49,7 +49,7 @@ class App extends Component {
             <h5>Or Discord | Cassio#8334</h5>
             <h4>My passion?</h4>
             <h2><u>Programming.</u></h2>
-            <h4 >Click the right arrow to see what I've made --></h4>
+            <h4 >Click the right arrow on the header to see what I have made -></h4>
           </ContentCard>
 
         )
@@ -57,18 +57,18 @@ class App extends Component {
       case 1:
         return (
           <div>
-            <ProjectCard title='Chat analytics tool for Twitch.tv' img={require('./assets/twitch-vod-stats.png')}
+            <ProjectCard title='Chat analytics tool for Twitch.tv' img={require('./assets/statistics.png')}
               github='https://github.com/DrySoldier/twitch-vod-stats' site='https://twitch-vod-stats.com/'>
               Built with a front-end of ReactJS and a back-end of Serverless and AWS Lambda, this fullstack website gives users chat statistics for any video on Twitch.tv
             </ProjectCard>
-            <ProjectCard title='Bee Movie quote generator' img={require('./assets/bee-alive.png')}
+            <ProjectCard title='Bee Movie quote generator' img={require('./assets/generator.png')}
               site='http://bee-alive.s3-website-us-east-1.amazonaws.com/' github='https://github.com/DrySoldier/bee-alive'>
               Made as a joke, this React/Bootstrap website grabs a random quote from The Bee Movie (2007) and presents it on the screen for some comedic value from out-of-context lines.
             </ProjectCard>
             <ProjectCard title='BPMixer' img={require('./assets/splash.png')} github='https://github.com/DrySoldier/bpmixer'>
               A mobile-app built with React-Native and Firebase that grabs recipes based on ingredients that you have in your pantry. See what you can make with anything you have!
             </ProjectCard>
-            <ProjectCard title='Trivia Game' github='https://github.com/DrySoldier/triviagame' site='https://drysoldier.github.io/TriviaGame/' img={require('./assets/triviagame.png')}>
+            <ProjectCard title='Trivia Game' github='https://github.com/DrySoldier/triviagame' site='https://drysoldier.github.io/TriviaGame/' img={require('./assets/trivia.png')}>
               A simple trivia game, made to test the Trivia API
             </ProjectCard>
           </div>
@@ -78,8 +78,12 @@ class App extends Component {
         return (
           <ContactCard height={0} title="Get in touch with me, let's talk about life." subtitle="Or about the weather, at least.">
             <hr></hr>
-            <a href='tel:32120.4455'><h2>321.200.4455</h2></a>
-            <a href="mailto:christiancotham61@gmail.com?Subject=Saw%20your%20portfolio" target="_top"><h2>christiancotham61@gmail.com</h2></a>
+            <a target='_blank' rel="noopener noreferrer" href='tel:32120.4455'><h2>321.200.4455</h2></a>
+            <a target='_blank' rel="noopener noreferrer" href="mailto:christiancotham61@gmail.com?Subject=Saw%20your%20portfolio"><h2>christiancotham61@gmail.com</h2></a>
+            <div className='social-media-div'>
+              <a target='_blank' rel="noopener noreferrer" href='https://www.linkedin.com/in/christian-cotham-006557173/'><img className='social' alt='linkedin' src={require('./assets/linkedin.png')}></img></a>
+              <a target='_blank' rel="noopener noreferrer" href='https://github.com/DrySoldier'><img className='social' alt='github' src={require('./assets/github.png')}></img></a>
+            </div>
           </ContactCard>
         )
 
@@ -126,7 +130,13 @@ class App extends Component {
     return (
 
       <div className='app-container'>
-        <Header _handleParentClick={(pressed) => this.headerClicked(pressed)} currentCard={this.state.currentCard} />
+        <Header _handleParentClick={(pressed) => this.headerClicked(pressed)} currentCard={this.state.currentCard} >
+          <button className='left-chevron'><img className='chevron' src={require('./assets/chevron-left.png')} alt='arrow left'
+            onClick={this.leftClick} />
+          </button>
+          <button className='right-chevron'><img className='chevron'  src={require('./assets/chevron-right.png')} alt='arrow right'
+            onClick={this.rightClick} /></button>
+        </Header>
 
         <div className="main">
           <Transition
@@ -142,14 +152,6 @@ class App extends Component {
         </div>
 
         <div className='content-container'>
-
-          <div className='arrow-container'>
-            <button className='left-chevron'><img src={require('./assets/chevron-left.png')} alt='arrow left'
-              onClick={this.leftClick} />
-            </button>
-            <button className='right-chevron'><img src={require('./assets/chevron-right.png')} alt='arrow right'
-              onClick={this.rightClick} /></button>
-          </div>
 
           <Spring
             from={{ opacity: 0 }}

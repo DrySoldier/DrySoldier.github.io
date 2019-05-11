@@ -30,38 +30,14 @@
   width: 100%;
   height: 100%;
   margin-top: 50px;
-  margin-bottom: 200px;
+  margin-bottom: 150px;
   justify-content: center;
   align-items: center;
 }
 
-.arrow-container {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0);
-  align-items: center;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
 .line {
-  content: "";
-  border-bottom-width: 5;
-  border-bottom-color: black;
-  border-bottom-style: solid;
-  visibility: hidden;
-  -webkit-transform: scaleX(0);
-  transform: scaleX(0);
-  -webkit-transition: all 0.3s ease-in-out 0s;
-  transition: all 0.3s ease-in-out 0s;
-}
-
-.active-card {
-  visibility: visible;
-  -webkit-transform: scaleX(1);
-  transform: scaleX(1);
-  color: black;
+  text-decoration-color: black;
+  text-decoration-line: underline; 
 }
 
 .content-card {
@@ -74,6 +50,7 @@
   padding-left: 25px;
   padding-right: 25px;
   padding-top: 15px;
+  padding-bottom: 25px;
   min-height: 150px;
   min-width: 150px;
   max-width: 750px;
@@ -102,6 +79,7 @@
   background-color: white;
   overflow-x: hidden;
   overflow-y: hidden;
+  background-color: rgba(255, 255, 255, .85);
 }
 
 .project-content {
@@ -125,7 +103,7 @@
 
 .extended-div {
   text-align: center;
-  margin-bottom: 50px;
+  margin-bottom: 25px;
 }
 
 .link-div {
@@ -134,7 +112,18 @@
   flex-direction: row;
   justify-content: space-evenly;
 
+  margin-bottom: 15px;
+
   width: 100%;
+}
+
+.social-media-div {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+
+  justify-content: center;
+  align-items: center;
 }
 
 button.link {
@@ -153,17 +142,19 @@ button.link:hover {
   border-radius: 20px;
 }
 
-.left-chevron, .right-chevron {
-  background-color: rgba(0, 0, 0, 0);
-  border-color: rgba(0, 0, 0, 0);
+.chevron {
+  height: 75px;
 }
 
-.left-chevron {
-  margin-left: 50px;
+.left-chevron, .right-chevron {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0);
+  border-color: rgba(0, 0, 0, 0);
+  opacity: .50;
 }
 
 .right-chevron {
-  margin-right: 50px;
+  right: 0;
 }
 
 a {
@@ -173,6 +164,11 @@ a {
 .profile-img {
   height: 300px;
   border-radius: 400px;
+}
+
+.social {
+  width: 100px;
+  height: 100px;
 }
 
 .box-shadow {
@@ -194,4 +190,10 @@ a {
   align-items: center;
   text-align: center;
   flex-direction: row;
+}
+
+@media screen and (max-width: 700px) {
+  .right-chevron, .left-chevron{
+    display: none;
+  }
 }

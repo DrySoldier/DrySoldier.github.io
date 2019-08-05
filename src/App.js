@@ -47,7 +47,7 @@ class App extends Component {
             <h5>Or Battle.net | Cassio#11467</h5>
             <h5>Or Origin | CassioLT</h5>
             <h5>Or Discord | Cassio#8334</h5>
-            <h4>My passion?</h4>
+            <h4>What do I love more than that?</h4>
             <h2><u>Programming.</u></h2>
             <h4 >Click the right arrow on the header to see what I have made -></h4>
           </ContentCard>
@@ -61,15 +61,8 @@ class App extends Component {
               github='https://github.com/DrySoldier/twitch-vod-stats' site='https://twitch-vod-stats.com/'>
               Built with a front-end of ReactJS and a back-end of Serverless and AWS Lambda, this fullstack website gives users chat statistics for any video on Twitch.tv
             </ProjectCard>
-            <ProjectCard title='Bee Movie quote generator' img={require('./assets/generator.png')}
-              site='http://bee-alive.s3-website-us-east-1.amazonaws.com/' github='https://github.com/DrySoldier/bee-alive'>
-              Made as a joke, this React/Bootstrap website grabs a random quote from The Bee Movie (2007) and presents it on the screen for some comedic value from out-of-context lines.
-            </ProjectCard>
-            <ProjectCard title='BPMixer' img={require('./assets/splash.png')} github='https://github.com/DrySoldier/bpmixer'>
+            <ProjectCard title='BPMixer' img={require('./assets/splash.png')} github='https://github.com/DrySoldier/bpmixer' site='https://itunes.apple.com/us/app/bpmixer/id1463353949?mt=8'>
               A mobile-app built with React-Native and Firebase that grabs recipes based on ingredients that you have in your pantry. See what you can make with anything you have!
-            </ProjectCard>
-            <ProjectCard title='Trivia Game' github='https://github.com/DrySoldier/triviagame' site='https://drysoldier.github.io/TriviaGame/' img={require('./assets/trivia.png')}>
-              A simple trivia game, made to test the Trivia API
             </ProjectCard>
           </div>
         )
@@ -78,7 +71,7 @@ class App extends Component {
         return (
           <ContactCard height={0} title="Get in touch with me, let's talk about life." subtitle="Or about the weather, at least.">
             <hr></hr>
-            <a target='_blank' rel="noopener noreferrer" href='tel:32120.4455'><h2>321.200.4455</h2></a>
+            <a target='_blank' rel="noopener noreferrer" href='tel:321.200.4455'><h2>321.200.4455</h2></a>
             <a target='_blank' rel="noopener noreferrer" href="mailto:christiancotham61@gmail.com?Subject=Saw%20your%20portfolio"><h2>christiancotham61@gmail.com</h2></a>
             <div className='social-media-div'>
               <a target='_blank' rel="noopener noreferrer" href='https://www.linkedin.com/in/christian-cotham-006557173/'><img className='social' alt='linkedin' src={require('./assets/linkedin.png')}></img></a>
